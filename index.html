@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rajasthan ki Rasoi — A Desert Kitchen</title>
+<meta name="description" content="Five dishes from a Rajasthani home kitchen, and the reasons they taste the way they do.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #1B140F;
+    --bg-deep: #130D09;
+    --paper: #F2E8D5;
+    --paper-dim: #E4D6B8;
+    --saffron: #E7A72C;
+    --chili: #C24E30;
+    --sage: #8A9764;
+    --ink: #1B140F;
+    --line: rgba(242,232,213,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--paper);
+    font-family:'Inter', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--saffron); color:var(--ink); }
+
+  h1,h2,h3,.display{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:800;
+    letter-spacing:-0.01em;
+  }
+  .mono{ font-family:'JetBrains Mono', monospace; letter-spacing:0.02em; }
+  a{ color:inherit; }
+
+  :focus-visible{ outline:2px solid var(--saffron); outline-offset:3px; }
+
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(27,20,15,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1120px; margin:0 auto;
+  }
+  .brand{ font-size:1.05rem; font-weight:800; }
+  .brand span{ color:var(--saffron); }
+  nav ul{ display:flex; gap:28px; list-style:none; }
+  nav a{
+    text-decoration:none; font-size:0.85rem; color:var(--paper-dim);
+    text-transform:uppercase; letter-spacing:0.08em; font-weight:500;
+    transition:color .2s ease;
+  }
+  nav a:hover{ color:var(--saffron); }
+  .nav-toggle{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:88px 0 60px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--sage);
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:''; width:22px; height:1px; background:var(--sage);
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5vw, 4.1rem);
+    line-height:1.03;
+    color:var(--paper);
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--saffron);
+  }
+  .hero p.lede{
+    margin-top:22px;
+    max-width:46ch;
+    color:var(--paper-dim);
+    font-size:1.08rem;
+  }
+  .hero-meta{
+    display:flex; gap:32px; margin-top:34px; flex-wrap:wrap;
+  }
+  .hero-meta div{ display:flex; flex-direction:column; gap:4px; }
+  .hero-meta .num{ font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:1.5rem; color:var(--saffron); }
+  .hero-meta .lbl{ font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--paper-dim); }
+
+  /* Thali SVG */
+  .thali-wrap{ position:relative; }
+  .thali-wrap svg{ width:100%; height:auto; display:block; }
+  .bowl-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    fill:var(--paper-dim);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+  }
+  .bowl{ cursor:pointer; transition:transform .25s ease; transform-origin:center; }
+  .bowl:hover{ transform:scale(1.06); }
+  .bowl:hover .bowl-label{ fill:var(--saffron); }
+  .plate-ring{ stroke:var(--line); }
+
+  /* ---------- INTRO STRIP ---------- */
+  .intro{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:46px 0;
+  }
+  .intro .wrap{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:40px;
+  }
+  .intro h2{ font-size:1.1rem; color:var(--sage); }
+  .intro p{ color:var(--paper-dim); max-width:62ch; font-size:1rem; }
+
+  /* ---------- DISHES ---------- */
+  .dishes{ padding:80px 0 40px; }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:42px; gap:20px; flex-wrap:wrap;
+  }
+  .section-head h2{ font-size:clamp(1.8rem, 3vw, 2.4rem); }
+  .section-head p{ color:var(--paper-dim); max-width:36ch; font-size:0.95rem; }
+
+  .dish-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .dish{
+    background:var(--bg);
+    padding:36px;
+    position:relative;
+    transition:background .3s ease;
+  }
+  .dish:hover{ background:var(--bg-deep); }
+  .dish-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    margin-bottom:16px;
+  }
+  .dish h3{ font-size:1.4rem; color:var(--paper); }
+  .dish .native{ color:var(--paper-dim); font-size:0.85rem; margin-top:2px; font-style:normal; }
+  .chilies{ display:flex; gap:4px; flex-shrink:0; margin-left:16px; margin-top:4px;}
+  .chili-icon{ width:14px; height:14px; opacity:0.25; }
+  .chili-icon.on{ opacity:1; }
+  .dish p.desc{ color:var(--paper-dim); font-size:0.95rem; max-width:48ch; margin-bottom:18px; }
+
+  .dish-detail{
+    max-height:0; overflow:hidden;
+    transition:max-height .4s ease;
+  }
+  .dish.open .dish-detail{ max-height:400px; }
+  .dish-detail-inner{ padding-top:14px; border-top:1px solid var(--line); margin-top:4px; }
+  .dish-detail h4{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em;
+    color:var(--sage); margin-bottom:10px;
+  }
+  .dish-detail ul{ list-style:none; }
+  .dish-detail li{
+    font-size:0.9rem; color:var(--paper-dim);
+    padding:5px 0; border-bottom:1px dashed var(--line);
+    display:flex; justify-content:space-between; gap:12px;
+  }
+  .dish-detail li span.amt{ font-family:'JetBrains Mono', monospace; color:var(--paper); flex-shrink:0; }
+
+  .toggle-btn{
+    background:none; border:none; color:var(--saffron);
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem;
+    cursor:pointer; padding:0; display:flex; align-items:center; gap:6px;
+    text-transform:uppercase; letter-spacing:.06em;
+  }
+  .toggle-btn .arrow{ transition:transform .3s ease; display:inline-block; }
+  .dish.open .toggle-btn .arrow{ transform:rotate(180deg); }
+
+  /* ---------- MARKET NOTES ---------- */
+  .notes{ padding:70px 0; border-top:1px solid var(--line); }
+  .notes .wrap{ display:grid; grid-template-columns:repeat(3,1fr); gap:36px; }
+  .note-card{ padding-right:20px; }
+  .note-num{ font-family:'JetBrains Mono',monospace; color:var(--chili); font-size:0.8rem; margin-bottom:10px; display:block; }
+  .note-card h3{ font-size:1.1rem; margin-bottom:10px; }
+  .note-card p{ color:var(--paper-dim); font-size:0.92rem; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px 0;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  footer p{ color:var(--paper-dim); font-size:0.85rem; }
+  footer .mono{ font-size:0.78rem; color:var(--sage); }
+
+  @media (max-width: 860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .intro .wrap{ grid-template-columns:1fr; }
+    .dish-grid{ grid-template-columns:1fr; }
+    .notes .wrap{ grid-template-columns:1fr; }
+    nav ul{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand">Rajasthan ki <span>Rasoi</span></div>
+    <ul>
+      <li><a href="#thali">The Thali</a></li>
+      <li><a href="#dishes">Dishes</a></li>
+      <li><a href="#notes">Notes from the Market</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="thali">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">A desert kitchen, five plates deep</div>
+      <h1>Food built to <em>outlast</em><br>heat and distance.</h1>
+      <p class="lede">In the Thar, water is scarce and the sun does most of the cooking. Rajasthani food answers with ghee instead of water, buttermilk instead of fresh vegetables, and grain that keeps for months. Every dish here exists because of that math.</p>
+      <div class="hero-meta">
+        <div><span class="num">5</span><span class="lbl">Signature dishes</span></div>
+        <div><span class="num">40°C+</span><span class="lbl">Average summer heat</span></div>
+        <div><span class="num">300yr</span><span class="lbl">Some recipes this old</span></div>
+      </div>
+    </div>
+
+    <div class="thali-wrap">
+      <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An illustrated thali plate with five labeled bowls: Dal Baati Churma, Laal Maas, Gatte ki Sabzi, Ker Sangri, and Malpua">
+        <circle class="plate-ring" cx="210" cy="210" r="195" fill="none" stroke-width="1"/>
+        <circle cx="210" cy="210" r="170" fill="#241A13" stroke="var(--line)" stroke-width="1"/>
+        <circle cx="210" cy="210" r="60" fill="#2C2117" stroke="var(--line)" stroke-width="1"/>
+        <text x="210" y="205" text-anchor="middle" class="bowl-label" style="font-size:10px; fill:#8A9764;">BAJRE KI</text>
+        <text x="210" y="220" text-anchor="middle" class="bowl-label" style="font-size:10px; fill:#8A9764;">ROTI</text>
+
+        <!-- Dal Baati Churma -->
+        <g class="bowl" data-dish="baati">
+          <circle cx="210" cy="80" r="34" fill="#E7A72C"/>
+          <circle cx="210" cy="80" r="34" fill="none" stroke="#1B140F" stroke-width="1" opacity="0.15"/>
+          <text x="210" y="130" text-anchor="middle" class="bowl-label">Dal Baati</text>
+        </g>
+
+        <!-- Laal Maas -->
+        <g class="bowl" data-dish="laalmaas">
+          <circle cx="330" cy="150" r="34" fill="#C24E30"/>
+          <text x="352" y="118" text-anchor="middle" class="bowl-label">Laal Maas</text>
+        </g>
+
+        <!-- Gatte ki Sabzi -->
+        <g class="bowl" data-dish="gatte">
+          <circle cx="330" cy="290" r="34" fill="#D8C089"/>
+          <text x="352" y="322" text-anchor="middle" class="bowl-label">Gatte</text>
+        </g>
+
+        <!-- Ker Sangri -->
+        <g class="bowl" data-dish="kersangri">
+          <circle cx="90" cy="290" r="34" fill="#5B6A3F"/>
+          <text x="68" y="322" text-anchor="middle" class="bowl-label">Ker Sangri</text>
+        </g>
+
+        <!-- Malpua -->
+        <g class="bowl" data-dish="malpua">
+          <circle cx="90" cy="150" r="34" fill="#EBC77E"/>
+          <text x="68" y="118" text-anchor="middle" class="bowl-label">Malpua</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="wrap">
+    <h2>Why it tastes like this</h2>
+    <p>None of it is decorative. The chilies in laal maas replaced vegetables that wouldn't grow here. The ker sangri berries and beans come from thorny desert shrubs that need almost no water. Ghee stands in for oil because it doesn't turn rancid in the heat. Read the plate and you're reading the terrain.</p>
+  </div>
+</section>
+
+<section class="dishes" id="dishes">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Five plates, one climate</h2>
+      <p>Tap a dish to see how it's actually built — ingredients and quantities as measured in a home kitchen, not a restaurant.</p>
+    </div>
+
+    <div class="dish-grid">
+
+      <article class="dish" data-dish="baati">
+        <div class="dish-top">
+          <div>
+            <h3>Dal Baati Churma</h3>
+            <p class="native">दाल बाटी चूरमा</p>
+          </div>
+          <div class="chilies" aria-label="Mild spice level">
+            <svg class="chili-icon on" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+            <svg class="chili-icon" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+            <svg class="chili-icon" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+          </div>
+        </div>
+        <p class="desc">Hard wheat rolls baked over embers until they crack, dunked in ghee, served with a five-lentil dal and a sweet crumble of wheat, jaggery and more ghee. The staple, not the special occasion.</p>
+        <button class="toggle-btn" aria-expanded="false">View recipe <span class="arrow">▾</span></button>
+        <div class="dish-detail">
+          <div class="dish-detail-inner">
+            <h4>Baati dough</h4>
+            <ul>
+              <li>Coarse wheat flour <span class="amt mono">2 cups</span></li>
+              <li>Ghee, melted <span class="amt mono">1/2 cup</span></li>
+              <li>Carom seeds <span class="amt mono">1 tsp</span></li>
+              <li>Curd, to bind <span class="amt mono">2 tbsp</span></li>
+              <li>Bake or roast, 35–40 min <span class="amt mono">220°C</span></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="dish" data-dish="laalmaas">
+        <div class="dish-top">
+          <div>
+            <h3>Laal Maas</h3>
+            <p class="native">लाल मांस</p>
+          </div>
+          <div class="chilies" aria-label="Very hot">
+            <svg class="chili-icon on" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+            <svg class="chili-icon on" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+            <svg class="chili-icon on" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+          </div>
+        </div>
+        <p class="desc">Mutton braised low and slow in a gravy built almost entirely from Mathania red chilies, more color and smoke than raw heat. Historically a hunter's dish — meat needed a preservation-grade amount of chili to keep in the heat.</p>
+        <button class="toggle-btn" aria-expanded="false">View recipe <span class="arrow">▾</span></button>
+        <div class="dish-detail">
+          <div class="dish-detail-inner">
+            <h4>Gravy base</h4>
+            <ul>
+              <li>Mutton, bone-in <span class="amt mono">750 g</span></li>
+              <li>Mathania chilies, soaked <span class="amt mono">10–12</span></li>
+              <li>Whisked curd <span class="amt mono">1 cup</span></li>
+              <li>Ghee <span class="amt mono">4 tbsp</span></li>
+              <li>Slow braise <span class="amt mono">90 min</span></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="dish" data-dish="gatte">
+        <div class="dish-top">
+          <div>
+            <h3>Gatte ki Sabzi</h3>
+            <p class="native">गट्टे की सब्ज़ी</p>
+          </div>
+          <div class="chilies" aria-label="Medium spice level">
+            <svg class="chili-icon on" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+            <svg class="chili-icon on" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+            <svg class="chili-icon" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+          </div>
+        </div>
+        <p class="desc">Gram-flour dumplings, boiled then sliced into coins and simmered in a tangy curd gravy. The vegetarian answer to a place where fresh vegetables were never guaranteed — chickpea flour keeps for a year.</p>
+        <button class="toggle-btn" aria-expanded="false">View recipe <span class="arrow">▾</span></button>
+        <div class="dish-detail">
+          <div class="dish-detail-inner">
+            <h4>Gatte</h4>
+            <ul>
+              <li>Gram flour (besan) <span class="amt mono">1.5 cups</span></li>
+              <li>Ajwain + red chili powder <span class="amt mono">1 tsp each</span></li>
+              <li>Curd, for gravy <span class="amt mono">1 cup</span></li>
+              <li>Boil ropes, slice, pan-fry <span class="amt mono">15 min</span></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="dish" data-dish="kersangri">
+        <div class="dish-top">
+          <div>
+            <h3>Ker Sangri</h3>
+            <p class="native">केर सांगरी</p>
+          </div>
+          <div class="chilies" aria-label="Medium spice level">
+            <svg class="chili-icon on" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+            <svg class="chili-icon on" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+            <svg class="chili-icon" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+          </div>
+        </div>
+        <p class="desc">Ker berries and sangri beans, both foraged from thorny desert shrubs, sun-dried for months and rehydrated as needed. A dish that only exists because two plants figured out how to grow without rain.</p>
+        <button class="toggle-btn" aria-expanded="false">View recipe <span class="arrow">▾</span></button>
+        <div class="dish-detail">
+          <div class="dish-detail-inner">
+            <h4>Prep</h4>
+            <ul>
+              <li>Dried ker + sangri, soaked <span class="amt mono">1 cup each</span></li>
+              <li>Soak time <span class="amt mono">8–24 hrs</span></li>
+              <li>Mustard oil <span class="amt mono">3 tbsp</span></li>
+              <li>Dried red chilies <span class="amt mono">4</span></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="dish" data-dish="malpua">
+        <div class="dish-top">
+          <div>
+            <h3>Malpua</h3>
+            <p class="native">मालपुआ</p>
+          </div>
+          <div class="chilies" aria-label="No spice, sweet dish">
+            <svg class="chili-icon" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+            <svg class="chili-icon" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+            <svg class="chili-icon" viewBox="0 0 24 24" fill="var(--chili)"><path d="M12 2c-3 3-6 7-6 12a6 6 0 0012 0c0-5-3-9-6-12z"/></svg>
+          </div>
+        </div>
+        <p class="desc">Pan-fried batter discs soaked in saffron syrup, the one dish on the plate with no defensive logic behind it — pure festival food, made because a wedding or a Sunday called for it.</p>
+        <button class="toggle-btn" aria-expanded="false">View recipe <span class="arrow">▾</span></button>
+        <div class="dish-detail">
+          <div class="dish-detail-inner">
+            <h4>Batter + syrup</h4>
+            <ul>
+              <li>Flour + khoya <span class="amt mono">1 cup / 100 g</span></li>
+              <li>Fennel seeds <span class="amt mono">1 tsp</span></li>
+              <li>Sugar syrup, 1-string <span class="amt mono">1.5 cups</span></li>
+              <li>Saffron strands <span class="amt mono">a pinch</span></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="notes" id="notes">
+  <div class="wrap">
+    <div class="note-card">
+      <span class="note-num mono">01</span>
+      <h3>Ghee over oil</h3>
+      <p>Clarified butter doesn't spoil in extreme heat the way raw oil can, and it was historically easier to store across a hot season.</p>
+    </div>
+    <div class="note-card">
+      <span class="note-num mono">02</span>
+      <h3>Dried over fresh</h3>
+      <p>Ker, sangri, and most lentils here are dried and rehydrated, not fresh — a pantry built for months, not days.</p>
+    </div>
+    <div class="note-card">
+      <span class="note-num mono">03</span>
+      <h3>Chili as preservative</h3>
+      <p>Before refrigeration, a heavy hand with red chili helped meat and pickles keep longer in the heat — flavor followed necessity.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>A small page about a desert kitchen. Built as a static site — fork it, edit the dishes, make it yours.</p>
+    <p class="mono">Last cooked: 2026</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dish = btn.closest('.dish');
+      const isOpen = dish.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
+      btn.firstChild.textContent = isOpen ? 'Hide recipe ' : 'View recipe ';
+    });
+  });
+
+  document.querySelectorAll('.bowl').forEach(bowl => {
+    bowl.addEventListener('click', () => {
+      const id = bowl.getAttribute('data-dish');
+      const card = document.querySelector('.dish[data-dish="' + id + '"]');
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.style.transition = 'box-shadow .3s ease';
+        card.style.boxShadow = 'inset 0 0 0 1px var(--saffron)';
+        setTimeout(() => { card.style.boxShadow = 'none'; }, 1200);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
